@@ -1,3 +1,9 @@
+""" un exemple de gui avec tkinter
+
+A noter:
+1) on peut structurer le code [au lieu d'un script avec tout au meme niveau]
+2) utiliser grid() plutot que pack()
+"""
 import numpy
 from tkhelper import tk, ttk, Plot, command
 
