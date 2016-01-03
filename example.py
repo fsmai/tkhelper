@@ -13,7 +13,8 @@ from tkhelper import tk, ttk, Plot, command
 
 
 def main():
-    root = tk.Tk(title='example')
+    root = tk.Tk()
+    root.title('example')
     fill_notebook(
         root,
         ('graphcal', build_graphcalc),
