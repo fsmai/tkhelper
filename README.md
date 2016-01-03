@@ -11,16 +11,18 @@ It provides:
   for python2 and python3.
 
 - the aliases:
-                colorchooser
-                commondialog
-                constants
-                dnd
-                filedialog
-                font
-                messagebox
-                simpledialog
+
+    - colorchooser
+    - commondialog
+    - constants
+    - dnd
+    - filedialog
+    - font
+    - messagebox
+    - simpledialog
+
   for the corresponding tkinter submodules (python3)
-  or their python2 conterpart.
+  or their python2 conterparts.
 
 
 Note: forget pack() and use grid() to place the element in the window.
