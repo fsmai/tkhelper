@@ -2,18 +2,42 @@
 
 The module provides:
 
-- the alias 'tk' and 'ttk' for the tkinter and ttk modules for python 2 and 3.
-
 - the decorator 'command' to easily build factories of commands.
 
 - the Plot class to help the integration of matplotlib with tkinter.
+
+- the aliases 'tk' and 'ttk' for the tkinter and ttk modules
+  for python2 and python3.
+
+- the aliases:
+                colorchooser
+                commondialog
+                constants
+                dnd
+                filedialog
+                font
+                messagebox
+                simpledialog
+  for the corresponding tkinter submodules (python3)
+  or their python2 conterpart.
 
 
 Note: forget pack() and use grid() to place the element in the window.
 
 """
 
-__all__ = ['tk', 'ttk', 'command']
+__all__ = [
+    'command',
+    'tk', 'ttk',
+    'colorchooser',
+    'commondialog',
+    'constants',
+    'dnd',
+    'filedialog',
+    'font',
+    'messagebox',
+    'simpledialog',
+]
 
 import functools
 
@@ -21,10 +45,26 @@ try:
     # Python 2
     import Tkinter as tk
     import ttk
+    import tkColorChooser as colorchooser
+    import tkCommonDialog as commondialog
+    import Tkconstants as constants
+    import Tkdnd as dnd
+    import tkFileDialog as filedialog
+    import tkFont as font
+    import tkMessageBox as messagebox
+    import tkSimpleDialog as simpledialog
 except ImportError:
     # Python 3
     import tkinter as tk
     from tkinter import ttk
+    from tkinter import colorchooser
+    from tkinter import commondialog
+    from tkinter import constants
+    from tkinter import dnd
+    from tkinter import filedialog
+    from tkinter import font
+    from tkinter import messagebox
+    from tkinter import simpledialog
 
 try:
     import matplotlib
