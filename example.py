@@ -110,11 +110,12 @@ def clear_graphcalc(plot):
 ###########################################################
 ###########################################################
 def build_sin(root):
+
     freq_max = tk.StringVar()
     freq_min = tk.StringVar()
 
     freq_min.set('1')
-    freq_max.set('5')
+    freq_max.set('3')
 
     x = numpy.linspace(0, 1, 100)
 
@@ -127,8 +128,11 @@ def build_sin(root):
     freq_min_entry = ttk.Entry(frequency, width=6, textvariable=freq_min)
     freq_scale = ttk.Scale(frequency, from_=0., to=1.)
     command = refresh_sin(freq_scale, freq_min, freq_max, plot, x)
-    command()
+    command()  # first draw
     freq_scale.configure(command=command)
+
+    validate_float(freq_min_entry)
+    validate_float(freq_max_entry)
 
     content.grid(column=0, row=0, sticky='nsew')
     root.columnconfigure(0, weight=1)
@@ -147,9 +151,15 @@ def build_sin(root):
 
 @command(event=True)
 def refresh_sin(event, scale, freq_min, freq_max, plot, x):
+
+    try:
+        fmin = float(freq_min.get())
+        fmax = float(freq_max.get())
+    except ValueError:
+        return
+
     scale = float(scale.get())
-    fmin = float(freq_min.get())
-    fmax = float(freq_max.get())
+
     freq = fmin + scale * (fmax - fmin)
 
     a = plot.figure.add_subplot(111)
@@ -158,6 +168,21 @@ def refresh_sin(event, scale, freq_min, freq_max, plot, x):
     a.plot(x, y, label='freq = %.3g' % freq)
     a.legend(loc='upper right')
     plot.canvas.draw()
+
+
+def validate_float(entry):
+    def on_validate(text):
+        try:
+            float(text)
+        except ValueError:
+            color = 'red'
+        else:
+            color = 'black'
+        entry.configure(foreground=color)
+        return True
+
+    vcmd = (entry.register(on_validate), '%P')
+    entry.configure(validate='key', validatecommand=vcmd)
 
 
 ###########################################################
